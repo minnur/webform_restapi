@@ -80,16 +80,4 @@ class ElementsBase extends Base {
     return $props;
   }
 
-  /**
-   * Convert underscores to CamelCase.
-   * @see https://stackoverflow.com/a/2792045/258899
-   */
-  protected function underscroresToCamelCase($string, $capitalizeFirstCharacter = false) {
-    $str = str_replace('_', '', ucwords($string, '_'));
-    if (!$capitalizeFirstCharacter) {
-      $str = lcfirst($str);
-    }
-    return $str;
-  }
-
 }
