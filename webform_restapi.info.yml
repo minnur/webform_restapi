@@ -2,7 +2,6 @@ name: Webform REST API
 type: module
 description: Webform REST API
 core: 8.x
-package: Adaptive Insights
 dependencies:
   - 'webform:webform'
   - 'rest:rest'
