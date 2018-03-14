@@ -6,27 +6,29 @@ use Drupal\rest\ResourceResponse;
 use Drupal\rest\Plugin\ResourceBase;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\webform_restapi\Model\Response as ResponseModel;
-use Drupal\webform_restapi\Model\Webform as WebformModel;
+use Drupal\webform_restapi\Model\WebformElements as WebformElementsModel;
+use Drupal\webform_restapi\Model\WebformSubmissions as WebformSubmissionsModel;
 
 /**
- * Provides webform resource.
+ * Provides webform submissions resource.
  *
  * @RestResource(
- *   id = "webform_restapi",
- *   label = @Translation("Webform REST API"),
+ *   id = "webform_restapi_submissions",
+ *   label = @Translation("Webform REST API Submissions"),
  *   uri_paths = {
- *     "canonical" = "/webform-restapi/{webform_id}",
- *     "https://www.drupal.org/link-relations/create" = "/webform-restapi/{webform_id}"
+ *     "canonical" = "/webform-restapi/{webform_id}/submissions",
+ *     "https://www.drupal.org/link-relations/create" = "/webform-restapi/{webform_id}/submissions"
  *   }
  * )
  */
-class WebformResource extends ResourceBase {
+class WebformSubmissions extends ResourceBase {
 
   /**
    * Get webform build data.
    */
   public function get($webform_id = NULL) {
-    $webform = new WebformModel();
+    $webform = new WebformElementsModel();
+    $webform_submissions = new WebformSubmissionsModel();
     $response = new ResponseModel();
     $response->setCode('webform_not_found');
 
@@ -36,7 +38,8 @@ class WebformResource extends ResourceBase {
     else {
       $webform->setId($webform_id)->load();
       if ($webform->getId()) {
-        $response->setData($webform->model())
+        $webform_submissions->setWebformObject($webform);
+        $response->setData($webform_submissions->loadAll()->model())
           ->setCode('success');
       }
       else {

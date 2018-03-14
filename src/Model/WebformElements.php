@@ -4,7 +4,7 @@ namespace Drupal\webform_restapi\Model;
 
 use Drupal\webform\Entity\Webform as WebformEntity;
 
-class Webform extends WebformBase {
+class WebformElements extends WebformElementsBase {
 
   /**
    * Load webform elements.
@@ -21,23 +21,5 @@ class Webform extends WebformBase {
     }
     return $this;
   }
-
-  /**
-   * Save webform submission.
-   */
-  public function save() {}
-
-  /**
-   * Update webform submission.
-   */
-  public function update() {
-    // Save submission
-    // https://www.drupal.org/docs/8/modules/webform/webform-cookbook/how-to-programmatically-create-a-submission
-  }
-
- /**
-  * Delete webform submission.
-  */
-  public function delete() {}
 
 }

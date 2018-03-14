@@ -2,7 +2,7 @@
 
 namespace Drupal\webform_restapi\Model;
 
-class WebformBase extends Base {
+class WebformElementsBase extends Base {
 
   protected $id;
   protected $properties;
